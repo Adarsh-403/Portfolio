@@ -8,10 +8,12 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Preloader from './components/Preloader';
 
 function App() {
   return (
     <div className="app-container">
+      <Preloader />
       <div className="bg-glow"></div>
       <div className="bg-glow-bottom"></div>
       
