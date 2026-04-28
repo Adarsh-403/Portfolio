@@ -69,6 +69,7 @@
   color: var(--text-primary);
   font-family: var(--font-heading);
   font-weight: 500;
+  word-break: break-word;
 }
 
 .contact-actions {
@@ -143,5 +144,15 @@ textarea.form-control {
   }
   .contact-title {
     font-size: 2.2rem;
+  }
+  .contact-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .contact-actions .btn {
+    width: 100%;
+  }
+  .info-item p {
+    font-size: 0.95rem;
   }
 }
