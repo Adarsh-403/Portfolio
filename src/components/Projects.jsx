@@ -35,6 +35,30 @@ const Projects = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40, filter: "blur(5px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { 
+        type: "spring", 
+        stiffness: 80, 
+        damping: 20 
+      } 
+    }
+  };
+
   return (
     <section className="projects section" id="projects">
       <div className="container">
@@ -43,15 +67,18 @@ const Projects = () => {
           <h2 className="section-title">Selected Works</h2>
         </div>
 
-        <div className="projects-grid">
+        <motion.div 
+          className="projects-grid"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {projects.map((project, index) => (
             <motion.div 
               key={index}
               className="project-card glass-card"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              variants={itemVariants}
             >
               <div className="project-image-wrapper">
                 <img src={project.image} alt={project.title} className="project-image" />
@@ -80,7 +107,7 @@ const Projects = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
         
         <div className="more-projects">
           <p>Other works include Business Portfolio Websites, Client Freelance Projects, and Landing Pages.</p>

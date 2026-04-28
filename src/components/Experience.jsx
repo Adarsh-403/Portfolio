@@ -52,6 +52,30 @@ const Experience = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -30, filter: "blur(5px)" },
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      filter: "blur(0px)",
+      transition: { 
+        type: "spring", 
+        stiffness: 80, 
+        damping: 20 
+      } 
+    }
+  };
+
   return (
     <section className="experience section" id="experience">
       <div className="container">
@@ -60,15 +84,18 @@ const Experience = () => {
           <h2 className="section-title">Professional Experience</h2>
         </div>
 
-        <div className="timeline">
+        <motion.div 
+          className="timeline"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {experiences.map((exp, index) => (
             <motion.div 
               key={index}
               className="timeline-item"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              variants={itemVariants}
             >
               <div className="timeline-dot"></div>
               <div className="timeline-content glass-card">
@@ -100,7 +127,7 @@ const Experience = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

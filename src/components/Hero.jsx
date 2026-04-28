@@ -4,16 +4,42 @@ import './Hero.css';
 import profileImg from '../assets/profile.png';
 
 const Hero = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        type: "spring", 
+        stiffness: 100, 
+        damping: 20, 
+        mass: 1 
+      } 
+    }
+  };
+
   return (
     <section className="hero section" id="home">
       <div className="container hero-container">
-        <div className="hero-content">
+        <motion.div 
+          className="hero-content"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div variants={itemVariants}>
             <h1 className="hero-main-title">
               ADARSH<br />
               <span className="text-accent-glow">VARGHESE</span>
@@ -22,9 +48,7 @@ const Hero = () => {
           
           <motion.div 
             className="hero-name-section"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            variants={itemVariants}
           >
             <div className="hero-handwritten">
               Developer.<br />
@@ -35,18 +59,14 @@ const Hero = () => {
           
           <motion.div 
             className="hero-roles"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            variants={itemVariants}
           >
             UI/UX DESIGNER <span className="dot">•</span> FRONTEND DEVELOPER <span className="dot">•</span> BACKEND DEVELOPER
           </motion.div>
           
           <motion.div 
             className="hero-services"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            variants={itemVariants}
           >
             <div className="service-box">
               <div className="service-icon-wrapper">
@@ -81,9 +101,7 @@ const Hero = () => {
           
           <motion.div 
             className="hero-tech-stack"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            variants={itemVariants}
           >
             <div className="stack-title">
               <span></span> TECH STACK <span></span>
@@ -130,13 +148,13 @@ const Hero = () => {
             </div>
           </motion.div>
           
-        </div>
+        </motion.div>
 
         <motion.div 
           className="hero-image-wrapper"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Main Portrait Image */}
           <div className="portrait-container">

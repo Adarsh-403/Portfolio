@@ -56,6 +56,30 @@ const Skills = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40, filter: "blur(5px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { 
+        type: "spring", 
+        stiffness: 80, 
+        damping: 20 
+      } 
+    }
+  };
+
   return (
     <section className="skills section" id="skills">
       <div className="container">
@@ -64,15 +88,18 @@ const Skills = () => {
           <h2 className="section-title">Technical Skills</h2>
         </div>
 
-        <div className="skills-grid">
+        <motion.div 
+          className="skills-grid"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {skillCategories.map((category, index) => (
             <motion.div 
               key={index}
               className="skill-category glass-card"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              variants={itemVariants}
               style={{ '--category-color': category.color }}
             >
               <div className="category-header">
@@ -107,7 +134,7 @@ const Skills = () => {
               </ul>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

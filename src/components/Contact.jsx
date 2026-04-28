@@ -10,10 +10,10 @@ const Contact = () => {
         <div className="contact-container glass-card">
           <div className="contact-content">
             <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, y: 30, filter: "blur(5px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ type: "spring", stiffness: 80, damping: 20 }}
             >
               <h2 className="contact-title">Let's build something <span className="text-gradient">exceptional</span> together.</h2>
               <p className="contact-desc">
@@ -59,10 +59,10 @@ const Contact = () => {
           
           <motion.div 
             className="contact-form-container"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0, x: 30, filter: "blur(5px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.2 }}
           >
             <form className="contact-form">
               <div className="form-group">
