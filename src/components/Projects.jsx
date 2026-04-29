@@ -64,7 +64,7 @@ const Projects = () => {
       <div className="container">
         <div className="section-header text-center">
           <span className="section-subtitle">Portfolio</span>
-          <h2 className="section-title">Selected Works</h2>
+          <h2 className="section-title">Recent Works</h2>
         </div>
 
         <motion.div 
